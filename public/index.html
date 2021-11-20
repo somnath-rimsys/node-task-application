@@ -1,0 +1,176 @@
+<h1 id="nodejs-task-application">nodejs-task-application</h1>
+<p>Node js and express application for creating endpoints.</p>
+<h3 id="project-setup">Project setup</h3>
+<ul>
+<li>After cloning the repository need to run <code>npm install</code></li>
+<li>Next create a <code>.env</code> file inside the project root and add the below key and value<pre><code><span class="hljs-attr">MONGODB_URL</span>=
+<span class="hljs-attr">SENDGRID_EMAIL_API_KEY</span>=
+<span class="hljs-attr">JWT_SECRET</span>=
+</code></pre></li>
+</ul>
+<blockquote>
+<p>Note: You need to login to <a href="https://sendgrid.com">Sendgrid-Email</a> to get your own api key and set the value for SENDGRID_EMAIL_API_KEY</p>
+</blockquote>
+<h3 id="features">Features</h3>
+<ol>
+<li>Authentication</li>
+<li>Password hashing</li>
+<li>File uploading</li>
+<li>Email Sending</li>
+</ol>
+<h3 id="endpoints">Endpoints</h3>
+<p>Users end points</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Body</th>
+<th>Param</th>
+<th>Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/user/create</td>
+<td>{<div style="margin-left: 16px">name(String),<br> email(String),<br> password(String), <br>age(Number)(optional) </div>}</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/user/login</td>
+<td>{<div style="margin-left: 16px">email (String),<br>password (String)</div>}</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/user/logout</td>
+<td>none</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/user/logoutAll</td>
+<td>none</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/user/all</td>
+<td>none</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/user/profile</td>
+<td>none</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>/user/update</td>
+<td>{<div style="margin-left: 16px">name(String), email(String), password(String), age(Number)</div>}</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/user/delete</td>
+<td>none</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/user/profile/avatar</td>
+<td>avatar(file)</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/user/profile/avatar</td>
+<td>none</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/user/profile/avatar</td>
+<td>none</td>
+<td>id</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+</tbody>
+</table>
+<p>Task end points</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Body</th>
+<th>Param</th>
+<th>Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/task/create</td>
+<td>{<div style="margin-left: 16px">description(String), completed(Boolean)(optional)</div>}</td>
+<td>none</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/task/all</td>
+<td>none</td>
+<td>completetd(Boolean)<br>limit=(Number)&amp;skip=(Number)<br>sortBy=(Query string)</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/task/:id</td>
+<td>none</td>
+<td>id</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>/task/:id</td>
+<td>{<div style="margin-left: 16px">description(String), completed(Boolean)(optional)</div>}</td>
+<td>id</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/task/:id</td>
+<td>none</td>
+<td>id</td>
+<td>{<div style="margin-left: 16px">&quot;Authorization&quot; : &quot;Bearer jwt-token&quot;</div>}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dependencies">Dependencies</h3>
+<ul>
+<li><a href="https://www.npmjs.com/package/bcryptjs">Bcrypt</a> - For password hashing</li>
+<li><a href="https://www.npmjs.com/package/chalk">Chalk</a> - For styling the console message</li>
+<li><a href="https://expressjs.com">Express</a> - For creating server</li>
+<li><a href="https://www.npmjs.com/package/env-cmd">Env-Cmd</a> - For accessing environment variables</li>
+<li><a href="https://www.npmjs.com/package/jsonwebtoken">Jsonwebtoken</a> - For creating jwt auth token</li>
+<li><a href="https://mongoosejs.com">Mongoose</a> - For mongodb validation, casting and business logic</li>
+<li><a href="https://www.npmjs.com/package/multer">Multer</a> - For file uploading</li>
+<li><a href="https://www.npmjs.com/package/sharp">Sharp</a> - For converting and resizing the uploaded image file</li>
+<li><a href="https://sendgrid.com">Sendgrid-Email</a> - For sending email in nodejs</li>
+<li><a href="https://www.npmjs.com/package/validator">Validator</a> - For validating email</li>
+</ul>
+<hr>
+<h5 id="_document-prepared-by-somnath-sardar_"><em>Document prepared by: Somnath Sardar</em></h5>
